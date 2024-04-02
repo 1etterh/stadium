@@ -1,15 +1,13 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<h1>Check if custom vue file is successfully connected</h1>
 </template>
-<!-- Gitinit -->
+
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+   
   }
 }
 </script>

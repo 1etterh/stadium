@@ -130,3 +130,14 @@ C:\Dev\stadium\backend> npm start
 ```
 	-if connection was successful, localhost:3000 will show the same page as frontend page.
 
+10. delete default components in App.vue, and write anything to check connection
+	![[Pasted image 20240402145356.png]]
+
+11. install dotenv to set database
+```
+C:\Dev\stadium\backend> npm install dotenv
+```
+
+12. create *.env* file in backend folder
+	 and add *.env* in *.gitignore*
+
