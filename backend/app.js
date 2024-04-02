@@ -16,7 +16,7 @@ var usersRouter = require('./routes/users');
 const connection = require('./database.js')
 connection.connect((err)=>{
   if (err) throw err;
-  connection.query('SELECT * from post',(err,rows,fields)=>{
+  connection.query('show databases',(err,rows,fields)=>{
     console.log(rows)
   })
 })
