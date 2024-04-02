@@ -77,6 +77,56 @@ pnpm-debug.log*
 
 *.sw?
 
-
 ```
+6. move to stadium/frontend
+7. edit: vue.config.js
+	-to connect frontend with backend
+	-
+```
+const { defineConfig } = require('@vue/cli-service')
+
+const path = require('path')
+
+module.exports = defineConfig({
+
+  outputDir:path.resolve(__dirname,'../backend/public/'),
+
+  transpileDependencies: true,
+
+  devServer:{
+
+    proxy:{
+
+      './api':{
+
+        target: 'https://localhost:3000/api',
+
+        changeOrigin:true,
+
+        pathRewrite:{
+
+          '^/api': '',
+
+        },
+
+      },
+
+    },
+
+  },
+
+  
+
+});
+```
+8. build frontend file
+```
+C:\Dev\stadium\frontend> npm run build
+```
+
+9. check conection of Backend n Frontend
+```
+C:\Dev\stadium\backend> npm start
+```
+	-if connection was successful, localhost:3000 will show the same page as frontend page.
 
