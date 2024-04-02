@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@vue/cli": "^5.0.8",
+    "express-generator": "^4.16.1"
+  }
+}
