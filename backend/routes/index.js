@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
-
+const postdata=require('./../postdata.json')
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.send('Container');
+  console.log('HOMEPAGE')
+  res.send("postdata");
 });
+
+
 
 module.exports = router;

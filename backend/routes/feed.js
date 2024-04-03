@@ -1,14 +1,12 @@
 var express = require('express');
 var router = express.Router();
-const connection=require('./../database.js')
+const postdata=require('./../postdata.json')
+const userdata=require('./../userdata.json')
 /* GET feed  */
-connection.connect((err)=>{
-  if(err) throw err;
-  console.log("routes/feed.js db connected");
-});
-router.get('/feed',async(req, res, next)=>{
-  let r= await connection.query('select * from post')
-  res.send(r)
+
+router.get('/',async(req, res, next)=>{
+  console.log('/routes/feed.js')
+  res.send({postdata:postdata, userdata:userdata})
 });
 
 module.exports = router;

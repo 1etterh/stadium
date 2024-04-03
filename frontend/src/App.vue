@@ -5,7 +5,7 @@
   </div>
   
   <div class="rView">
-    <router-view :postdata="postdata" :userdata="userdata"></router-view>
+    <router-view></router-view>
   </div>
   <div class="tab-bar">
     <p>Feed</p>
