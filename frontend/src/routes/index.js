@@ -1,10 +1,10 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Container from './../components/Container.vue'
+import Feed from './../components/Feed.vue'
 
 const routes=[
     {
         path:'/',
-        component:Container,
+        component:Feed,
         props:true
     }
 ]
