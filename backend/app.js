@@ -11,21 +11,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var feedRouter= require('./routes/feed')
 
-/*
- testing code for connection
- */
-// const connection = require('./database.js')
-// connection.connect((err)=>{
-//   if (err) throw err;
-//   connection.query('show databases',(err,rows,fields)=>{
-//     console.log(rows)
-//   })
-// })
-
-
 var app = express();
 
-// console.log(process.env.RDS_HOSTNAME)
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -36,8 +23,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/index', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', indexRouter);
+// app.use('/users', usersRouter);
 app.use('/feed', feedRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
