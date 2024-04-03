@@ -1,6 +1,6 @@
 <template>
     <div v-for="(item,i) in postdata" :key="i">
-        <Post :post="item" :user="userdata[i]"/>
+        <Post :post="item"/>
     </div>
 </template>
 
@@ -13,14 +13,14 @@ export default {
         axios.get('/feed')
         .then((res)=>{
             console.log(res.data)
-            this.postdata=res.data.postdata
-            this.userdata=res.data.userdata
+            this.postdata=res.data
+            
         })
     },
     data(){
         return{
            postdata:[],
-           userdata:[]
+           
         }
     },
     components:{

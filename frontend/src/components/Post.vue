@@ -1,13 +1,14 @@
 <template>
   <div class="post-container">
     <div class="post-head">
-      <img :src="user.image" alt="">
-      <p><strong>{{ user.username }}</strong></p>
+      <img :src="post.profileImage" alt="">
+      <p><strong>{{ post.username }}</strong></p>
     </div>
 
   <div class="post-body">
     <img :src="post.image" alt="">
     <p><strong>{{ post.likes }} Likes</strong>  {{ post.contents }}</p>
+    <p>{{ post.datetime }}</p>
   </div>
 </div>
 </template>
@@ -17,7 +18,7 @@
       name: 'Post',
       props:{
         post:Object,
-        user:Object
+      
       }
     }
 </script>

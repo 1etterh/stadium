@@ -9,10 +9,5 @@ const connection = mysql.createConnection({
     port     : process.env.RDS_PORT,
   });
 
-// connection.connect((err)=>{
-//     if(err) throw err;
-//     console.log('connected to rds for mysql')
-// })
-
 
 module.exports=connection;
