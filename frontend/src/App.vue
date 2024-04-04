@@ -1,36 +1,15 @@
 <template>
-  <div class="status-bar">
-    <p>Home</p>
-    <p>Message</p>
-    <router-link to="/login">Login</router-link>
-  </div>
-  
   <div class="rView">
     <router-view></router-view>
-  </div>
-  <div class="tab-bar">
-    <p>Feed</p>
-    <p>Search</p>
-    <p>Add</p>
-    <p>MyPage</p>
   </div>
 </template>
 
 <script>
-import postdata from './assets/postdata.js'
-import userdata from './assets/userdata.js'
+
 // import Container from './components/Container.vue'
 export default {
   name: 'App',
-  data(){
-    return{
-      postdata:postdata,
-      userdata:userdata
-    }
-  },
-  components: {
-  //  Container
-  }
+
 }
 </script>
 
@@ -62,18 +41,5 @@ body{
   overflow-y:scroll;
 
 }
-.status-bar{
-  display: flex;
-  justify-content: space-around;
-  position:sticky;
-  top:0;
 
-}
-
-.tab-bar{
-  display:flex;
-  justify-content:space-around;
-  position:sticky;
-  bottom:0;
-}
 </style>

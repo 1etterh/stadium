@@ -4,7 +4,7 @@
         <form action="/login" method="POST">
             <input type="text" name="username">
             <input type="password" name="password">
-            <button type="submit">Login</button>
+            <button type="submit" class="contrast">Login</button>
         </form>
     </div>
 </template>
@@ -14,24 +14,12 @@
 // import Post from './Post.vue'
 export default {
     name: 'Login',
-    data(){
-        return{
-
-           
-        }
-    },
-    components:{
-
-    },
-    props:{
-
-    },
-    methods(){
-      
-    }
+    
 }
 </script>
 
 <style>
-
+div{
+    padding:10px;
+}
 </style>
