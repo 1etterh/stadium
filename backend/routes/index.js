@@ -37,8 +37,8 @@ sessionStore.onReady().then(()=>{
 })
 router.use(passport.session())
 
-passport.use(new LocalStrategy((username, password, done) => {
-  connection.query('SELECT * FROM credential.user WHERE username = ?', [username], (err, results) => {
+passport.use(new LocalStrategy(async(username, password, done) => {
+  connection.query('SELECT * FROM credential.user WHERE username = ?', [username], async(err, results) => {
     if (err) {
       return done(err);
     }
@@ -47,7 +47,7 @@ passport.use(new LocalStrategy((username, password, done) => {
     }
     
     const user = results[0];
-    bcrypt.compare(password, user.password, (err, isMatch) => {
+    await bcrypt.compare(password, user.password, (err, isMatch) => {
       if (err) {
         return done(err);
       }
@@ -84,16 +84,30 @@ passport.deserializeUser((id, done) => {
 });
 
 
-router.post('/login',async(req,res,next)=>{
-  passport.authenticate('local', (error,user,info)=>{
-      if(error) return res.status(500).json(error)
-      if(!user) return res.status(401).json(info.message)
-      req.logIn(user,(err)=>{
-          if(err) return next(err)
-          res.redirect('/')
-      })
-  })(req,res,next)
-})
+// router.post('/login',async(req,res,next)=>{
+//   passport.authenticate('local', (error,user,info)=>{
+//       if(error) return res.status(500).json(error)
+//       if(!user) return res.status(401).json(info.message)
+//       req.logIn(user,(err)=>{
+//           if(err) return next(err)
+//           res.send(true)
+//       })
+//   })(req,res,next)
+// })
+
+router.post('/login', async (req, res, next) => {
+  console.log('Login request received:', req.body); // 요청 본문 로그
+  passport.authenticate('local', (error, user, info) => {
+    console.log('Passport authentication result:', { error, user, info }); // Passport 인증 결과 로그
+    if (error) return res.status(500).json({ message: 'Internal server error' });
+    if (!user) return res.status(401).json({ message: info.message });
+    req.logIn(user, (err) => {
+      if (err) return next(err);
+      res.json({ success: true });
+    });
+  })(req, res, next);
+});
+
 
 router.post('/register',async(req,res,next)=>{
   console.log(req.body.username, req.body.password)
