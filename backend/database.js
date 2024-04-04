@@ -1,6 +1,6 @@
 const express = require('express')
 const mysql = require('mysql')
-const dotenv = require('dotenv')
+
 require('dotenv').config()
 const connection = mysql.createConnection({
     host     : process.env.RDS_HOSTNAME,

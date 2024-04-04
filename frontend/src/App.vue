@@ -2,6 +2,7 @@
   <div class="status-bar">
     <p>Home</p>
     <p>Message</p>
+    <router-link to="/login">Login</router-link>
   </div>
   
   <div class="rView">

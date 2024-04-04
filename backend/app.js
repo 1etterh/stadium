@@ -6,7 +6,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mysql = require('mysql')
-
+const history=require('connect-history-api-fallback')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var feedRouter= require('./routes/feed')
@@ -23,6 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 app.use('/feed', feedRouter)
@@ -30,8 +31,7 @@ app.use('/feed', feedRouter)
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
-
+app.use(history())
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
