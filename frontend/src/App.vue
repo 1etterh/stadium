@@ -37,7 +37,7 @@ body{
 }
 
 .rView{
-  height:700px;
+  height:800px;
   overflow-y:scroll;
 
 }
