@@ -1,4 +1,5 @@
 <template>
+  
     <div class="status-bar">
     <p>Home</p>
     <p>Message</p>
@@ -14,6 +15,7 @@
     <p>Add</p>
     <p>MyPage</p>
   </div>
+
 </template>
 
 <script>
@@ -45,8 +47,10 @@ export default {
 </script>
 
 <style>
+
 .status-bar{
   display: flex;
+  flex-direction:row;
   justify-content: space-around;
   position:sticky;
   top:0;
