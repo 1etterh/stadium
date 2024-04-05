@@ -1,7 +1,7 @@
 <template>
-  <div class="rView">
+
     <router-view></router-view>
-  </div>
+
 </template>
 
 <script>
@@ -17,7 +17,7 @@ export default {
 ::-webkit-scrollbar{
   display: none
 }
-#app {
+body>#app {
   width: 400px;
   height:800px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -26,20 +26,16 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin: 60px;
-  position:relative;
   border:solid 1px black;
+  /* padding:10px; */
 
+}
+
+body,div{
+  box-sizing: borderbox;
 }
 
 body{
   margin:0;
-  box-sizing: borderbox;
 }
-
-.rView{
-  height:800px;
-  overflow-y:scroll;
-
-}
-
 </style>

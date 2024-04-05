@@ -1,26 +1,27 @@
 <template>
-  
+ <div class="feed">
     <div class="status-bar">
     <p>Home</p>
     <p>Message</p>
     <router-link to="/login">Login</router-link>
   </div>
-    <div v-for="(item,i) in postdata" :key="i">
-        <Post :post="item"/>
+  <div class="feed-container"></div>
+    <div class="feed-container" v-for="(item,i) in postdata" :key="i">
+        <!-- <Post :post="item"/> -->
     </div>
 
     <div class="tab-bar">
-    <p>Feed</p>
-    <p>Search</p>
-    <p>Add</p>
-    <p>MyPage</p>
+    <span>Feed</span>
+    <span>Search</span>
+    <span>Add</span>
+    <span>MyPage</span>
   </div>
-
+</div>
 </template>
 
 <script>
 import axios from 'axios'
-import Post from './Post.vue'
+// import Post from './Post.vue'
 export default {
     name: 'Feed',
     created(){
@@ -38,7 +39,7 @@ export default {
         }
     },
     components:{
-        Post
+        // Post
     },
     props:{
 
@@ -47,20 +48,27 @@ export default {
 </script>
 
 <style>
-
-.status-bar{
+.feed{
+  position:relative;
+  height:800px;
+}
+.status-bar, .tab-bar{
   display: flex;
-  flex-direction:row;
-  justify-content: space-around;
-  position:sticky;
-  top:0;
+  justify-content: space-evenly;
+  position:absolute;
+  width:100%;
+  height:50px;
 
 }
-
+.status-bar{
+  top:0
+}
 .tab-bar{
-  display:flex;
-  justify-content:space-around;
-  position:sticky;
-  bottom:0;
+  bottom:0
+}
+
+.feed-container{
+  height:700px;
+  overflow-y:scroll;
 }
 </style>
