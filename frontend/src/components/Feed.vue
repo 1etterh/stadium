@@ -5,10 +5,11 @@
     <p>Message</p>
     <router-link to="/login">Login</router-link>
   </div>
-  <div class="feed-container"></div>
-    <div class="feed-container" v-for="(item,i) in postdata" :key="i">
-        <!-- <Post :post="item"/> -->
+  <div class="feed-container">
+    <div v-for="(item,i) in postdata" :key="i">
+        <Post :post="item"/>
     </div>
+  </div>
 
     <div class="tab-bar">
     <span>Feed</span>
@@ -21,7 +22,7 @@
 
 <script>
 import axios from 'axios'
-// import Post from './Post.vue'
+import Post from './Post.vue'
 export default {
     name: 'Feed',
     created(){
@@ -39,7 +40,7 @@ export default {
         }
     },
     components:{
-        // Post
+        Post
     },
     props:{
 
@@ -68,6 +69,8 @@ export default {
 }
 
 .feed-container{
+  position:absolute;
+  top:50px;
   height:700px;
   overflow-y:scroll;
 }

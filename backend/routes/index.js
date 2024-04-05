@@ -107,7 +107,16 @@ router.post('/login', async (req, res, next) => {
     });
   })(req, res, next);
 });
-
+router.post('/checkUsername', (req, res) => {
+  const { username } = req.body;
+  connection.query('SELECT * FROM credential.user WHERE username = ?', [username], (err, rows) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: '사용자 이름을 확인하는 중 오류가 발생했습니다.' });
+    }
+    res.json({ exists: rows.length > 0 });
+  });
+});
 
 router.post('/register',async(req,res,next)=>{
   console.log(req.body.username, req.body.password)
