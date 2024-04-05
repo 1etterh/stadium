@@ -131,13 +131,18 @@ router.post('/checkUsername', (req, res) => {
   });
 });
 
-router.post('/register',async(req,res,next)=>{
+router.post('/register',async(req,res)=>{
   console.log(req.body.username, req.body.password)
   let hash = await bcrypt.hash(req.body.password,10)
   const q=`INSERT INTO credential.user (username, password) VALUES ('${req.body.username}', '${hash}')`
-  connection.query(q)
-  let r = 1
-  res.send(JSON.stringify({r}))
+  connection.query(q,(err)=>{
+    if(err){
+      console.log(err);
+      return res.status(500).json({message:"Error occured during register process"})
+    }
+    res.json({success: true})
+  })
+
 })
 
 

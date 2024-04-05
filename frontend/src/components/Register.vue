@@ -7,15 +7,16 @@
   
       <div class="register-body" :class="{ 'unique': isUsernameUnique }">
         <div class="register-input">
-          <input type="text" name="username" v-model="registerUsername" placeholder="ID">
+          <input type="text" name="username" v-model="registerUsername" placeholder="ID" required>
           <button @click="checkUsername" class="contrast">c</button>
         </div>
         <div class="register-input" >
           <div class="register-password">
-            <input type="password" v-model="registerPassword" placeholder="Password">
-            <input type="password" v-model="registerPasswordConfirm" placeholder="Confirm Password">
+            <input type="password" v-model="registerPassword" placeholder="Password" required>
+            <input type="password" v-model="registerPasswordConfirm" placeholder="Confirm Password" required>
+            <span v-if="!isPasswordConfirmed">Input Valid Password</span>
           </div>
-          <button @click="register" class="contrast">r</button>
+          <button @click="register" class="contrast" :disabled="!isValidRegister">r</button>
         </div>
       </div>
 
@@ -35,6 +36,9 @@ export default {
     };
   },
   computed: {
+    isPasswordConfirmed(){
+      return(this.registerPassword == this.registerPasswordConfirm)
+    },
     isValidRegister() {
       return (
         this.isUsernameUnique &&
@@ -72,6 +76,34 @@ export default {
 
     },
     async register() {
+      console.log("registerbuttonclicked")
+      try {
+        const response = await fetch('/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            username: this.registerUsername,
+            password: this.registerPassword
+          })
+        });
+
+        const data = await response.json();
+        if(data.success==true){
+          this.$router.push('/login')
+        }
+        else{
+          this.$router.go(-1)
+        }
+        console.log('Register.vue, line:99',data.message)
+        alert(data.success);
+      } catch (error) {
+        console.error(error);
+        alert('회원 가입 중 오류가 발생했습니다.');
+      }
+
+
       // 회원 가입 기능 구현
     }
   }
