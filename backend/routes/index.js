@@ -107,12 +107,25 @@ router.post('/login', async (req, res, next) => {
     });
   })(req, res, next);
 });
+
+let usernames=[];
+
 router.post('/checkUsername', (req, res) => {
   const { username } = req.body;
+
+  if(usernames.includes(username)){
+    console.log('username included in usernames')
+    console.log(usernames)
+    return res.json({exists:true})
+  }
+
   connection.query('SELECT * FROM credential.user WHERE username = ?', [username], (err, rows) => {
     if (err) {
       console.error(err);
       return res.status(500).json({ message: '사용자 이름을 확인하는 중 오류가 발생했습니다.' });
+    }
+    if (rows.length!=0){
+      usernames.push(username)
     }
     res.json({ exists: rows.length > 0 });
   });
