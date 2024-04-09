@@ -14,7 +14,7 @@
     <div class="tab-bar">
     <span>Feed</span>
     <span>Search</span>
-    <span>Add</span>
+    <router-link to="/write">Write</router-link>
     <span>MyPage</span>
   </div>
 </div>

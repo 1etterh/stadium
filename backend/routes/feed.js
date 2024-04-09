@@ -10,7 +10,7 @@ router.get('/',async(req, res, next)=>{
   console.log('/routes/feed.js')
   await connection.query(joinQuery,(err,rows,fields)=>{
     if(err) throw err;
-    console.log(rows)
+    // console.log(rows)
     res.send(rows)
   })
   
