@@ -27,7 +27,7 @@ app.use('/', indexRouter);
 app.use('/feed', feedRouter)
 
 
-app.use('/', writeRouter);
+app.use('/write', writeRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

@@ -19,33 +19,62 @@ export default {
   },
   methods: {
     handleFileChange(event) {
+      // Get the selected image file
       this.image = event.target.files[0];
+     
+      console.log(this.image);
     },
     async publishPost() {
-      const formData = new FormData();
-      formData.append('contents', this.contents);
-      
-      // Create a new presigned URL for the image upload
-      const presignedUrlResponse = await axios.post('/presigned-url', {
-        fileName: this.image.name,
-        fileType: this.image.type
-      });
-      
-      // Upload the image directly to S3 using the presigned URL
-      await axios.put(presignedUrlResponse.data.url, this.image, {
-        headers: {
-          'Content-Type': this.image.type
+      try {
+        // Create a FormData object
+        let formData = new FormData();
+        formData.append('image', this.image);
+        formData.append('contents', this.contents);
+        console.log(formData)
+        // Send FormData object using axios
+        const response = await axios.post('/write', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+
+        if (response.data.success) {
+          console.log('Uploaded post');
+          this.$router.push('/');
+        } else {
+          console.error('Failed to upload post');
+          this.$router.go(-1);
         }
-      });
-      
-      // After the upload, send the contents and image URL to your backend endpoint
-      await axios.post('/write', {
-        contents: this.contents,
-        imageUrl: presignedUrlResponse.data.url
-      });
-      
-      this.$router.push('/');
+      } catch (error) {
+        console.error('Error publishing post:', error);
+        // Handle error
+      }
     }
   }
 };
 </script>
+
+<style scoped>
+.post-publish {
+  max-width: 600px;
+  margin: auto;
+}
+
+.post-publish input[type="file"] {
+  margin-bottom: 10px;
+}
+
+.post-publish textarea {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+.post-publish button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+</style>
