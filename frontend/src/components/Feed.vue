@@ -1,10 +1,9 @@
 <template>
 <div class="feed">
   <div class="status-bar">
-      <p>Home</p>
-      <p>Message</p>
-      <router-link to="/login">Login</router-link>
-  </div>
+      <!-- <router-link to="/login">Login</router-link> -->
+      <span><font-awesome-icon :icon="['fa', 'paper-plane']" /></span>
+    </div>
 
     <div class="feed-container">
         <div v-for="(item,i) in postdata" :key="i">
@@ -12,10 +11,11 @@
         </div>
     </div>
     <div class="tab-bar">
-      <span>Feed</span>
-      <span><font-awesome-icon :icon="['fas', 'search']" /></span>
-      
-      <span>MyPage</span>
+      <span><font-awesome-icon :icon="['fa', 'home']"/></span>
+      <span><font-awesome-icon :icon="['fa', 'search']"/></span>
+      <router-link to="/write"><span><font-awesome-icon :icon="['fa', 'plus-square']" /></span> </router-link>
+      <span><font-awesome-icon :icon="['fa', 'heart']" /></span>
+      <span><font-awesome-icon :icon="['fa', 'user-circle']" /></span>
     </div>
 
 </div>
@@ -55,23 +55,27 @@ export default {
 </script>
 
 <style>
+
 .feed{
   position:relative;
   height:800px;
 }
 .status-bar, .tab-bar{
   display: flex;
-  justify-content: space-evenly;
   position:absolute;
   width:100%;
   height:50px;
 
 }
 .status-bar{
-  top:0
+  top:0;
+  padding-top: 10px;
+  padding-right: 20px;
+  flex-direction: row-reverse;
 }
 .tab-bar{
-  bottom:0
+  bottom:0;
+  justify-content: space-evenly;
 }
 
 .feed-container{
